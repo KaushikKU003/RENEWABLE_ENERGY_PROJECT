@@ -2,8 +2,12 @@ const express = require("express");
 const db = require("../db");
 const router = express.Router();
 
-router.post()
+router.post('/risks/:projectId',()=>{
 
-router.put()
+})
+
+router.put('/risks/:id',()=>{
+    
+})
 
 module.exports = router
