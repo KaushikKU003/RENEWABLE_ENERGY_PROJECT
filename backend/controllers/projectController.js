@@ -91,7 +91,9 @@ router.put("/projects/:id", (req, res) => {
 
     updateValues.push(projectId);
 
-    const sql = `UPDATE project SET ${updateFields.join(", ")} WHERE project_id = ?`;
+    const sql = `UPDATE project SET ${updateFields.join(
+      ", "
+    )} WHERE project_id = ?`;
 
     db.query(sql, updateValues, (error, result) => {
       if (error) {
@@ -113,6 +115,35 @@ router.put("/projects/:id", (req, res) => {
       status: 500,
       success: false,
       message: error,
+    });
+  }
+});
+
+router.get("/project-count", (req, res) => {
+  try {
+    db.query(
+      "SELECT type, COUNT(*) AS count FROM project GROUP BY type",
+      (error, results) => {
+        if (error) {
+          return res.status(500).json({
+            success: false,
+            message: "An error occurred while fetching project count by type",
+            error: error.message,
+          });
+        }
+
+        return res.status(200).json({
+          success: true,
+          message: "Project count by type fetched successfully",
+          data: results,
+        });
+      }
+    );
+  } catch (error) {
+    return res.status(500).json({
+      success: false,
+      message: "An error occurred while processing the request",
+      error: error.message,
     });
   }
 });
