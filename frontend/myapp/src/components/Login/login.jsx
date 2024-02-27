@@ -9,9 +9,7 @@ const Login = () => {
   const handleSubmit = async (event) => {
         event.preventDefault(); // Prevent default form submission
         try {
-          // Send POST request to backend
-          // console.log(formData); // Log the form data
-          const response = await axios.post('YOUR_BACKEND_API_URL', formData);
+          const response = await axios.post('http://localhost:4000/admin/login', formData);
           console.log(response.data); // Log the response data
           // You can handle the response data or redirect the user after successful login
         } catch (error) {
@@ -19,10 +17,6 @@ const Login = () => {
           // Handle error, show error message, etc.
         }
       };
-  // const handleSubmit = (event) => {
-  //   event.preventDefault(); // Prevent default form submission
-  //   
-  // };
 
   const handleInputChange = (event) => {
     const { name, value } = event.target;

@@ -1,15 +1,14 @@
-import { Outlet, Link } from "react-router-dom";
-
+import { Outlet, Link } from "react-router-dom"
 const Layout = () => {
   return (
     <>
-      <nav>
-        <ul>
+      <nav class="bg-red-300">
+        <ul class="flex justify-evenly p-4 text-2xl font-extrabold">
           <li>
-            <Link to="/">Home</Link>
+            <Link to="/">Dashboard</Link>
           </li>
           <li>
-            <Link to="/blogs">Blogs</Link>
+            <Link to="/project">Projects</Link>
           </li>
           <li>
             <Link to="/contact">Contact</Link>
@@ -23,3 +22,5 @@ const Layout = () => {
 };
 
 export default Layout;
+
+
