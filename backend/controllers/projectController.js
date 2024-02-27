@@ -148,4 +148,58 @@ router.get("/project-count", (req, res) => {
   }
 });
 
+
+
+router.get("/projects", (req, res) => {
+  try {
+    const searchTerm = req.query.searchTerm;
+    const searchBy = req.query.searchBy;
+
+    if (!searchTerm || !searchBy) {
+      return res.status(400).json({
+        success: false,
+        message: "Search term and search by criteria are required",
+      });
+    }
+
+    let sql = "";
+    let params = [];
+
+    if (searchBy === "project_name") {
+      sql = "SELECT * FROM project WHERE project_name LIKE ?";
+    } else if (searchBy === "type") {
+      sql = "SELECT * FROM project WHERE type LIKE ?";
+    } else {
+      return res.status(400).json({
+        success: false,
+        message: "Invalid search by criteria",
+      });
+    }
+
+    params.push(`%${searchTerm}%`);
+
+    db.query(sql, params, (error, results) => {
+      if (error) {
+        return res.status(500).json({
+          success: false,
+          message: "Error fetching projects",
+          error: error.message,
+        });
+      }
+
+      return res.status(200).json({
+        success: true,
+        message: "Projects fetched successfully",
+        data: results,
+      });
+    });
+  } catch (error) {
+    return res.status(500).json({
+      success: false,
+      message: "Internal server error",
+      error: error.message,
+    });
+  }
+});
+
 module.exports = router;
