@@ -10,7 +10,7 @@ const ProjectDetails = () => {
     <>
       <ProjectsLayout/>
         <div className="min-h-[95vh] bg-gray-50">
-        <form>
+        <form class='max-w-[75%] text-center m-auto'>
       <div>
         <label htmlFor="project_name" className="block">Project Name:</label>
         <input type="text" id="project_name" name="project_name" className="block w-full border-gray-300 rounded-md shadow-sm focus:ring-indigo-500 focus:border-indigo-500" />

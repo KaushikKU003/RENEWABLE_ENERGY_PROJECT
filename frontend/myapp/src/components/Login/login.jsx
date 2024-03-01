@@ -1,22 +1,57 @@
 import React, { useState } from 'react';
 import axios from 'axios';
-
+import {useNavigate } from "react-router-dom";
+import { ToastContainer, toast } from "react-toastify";
+import "react-toastify/dist/ReactToastify.css";
 const Login = () => {
+  const navigate = useNavigate();
   const [formData, setFormData] = useState({
     email: '',
     password: ''
   });
-  const handleSubmit = async (event) => {
-        event.preventDefault(); // Prevent default form submission
-        try {
-          const response = await axios.post('http://localhost:4000/admin/login', formData);
-          console.log(response.data); // Log the response data
-          // You can handle the response data or redirect the user after successful login
-        } catch (error) {
-          console.error('Error occurred:', error);
-          // Handle error, show error message, etc.
-        }
-      };
+
+  const handleError = (err) =>
+    toast.error(err, {
+      position: "bottom-left",
+    });
+const handleSuccess = (msg) =>
+    toast.success(msg, {
+      position: "top-right",
+    });
+const handleRegularLogin = async () => {
+  try {
+    const response = await axios.post('http://localhost:4000/app/admin/admins/login', formData);
+    console.log(response.data); // Log the response data
+    
+    if (response.data.success) {
+      // Redirect to dashboard on successful login
+      handleSuccess("Login successful!")
+      setTimeout(() => {
+        navigate("/");
+      }, 1500)
+    } else {
+      // Handle unsuccessful login (show error message, etc.)
+      handleError("Login Failed")
+      console.error('Login failed:', response.data.message);
+      // You can handle the error in the UI, for example, by showing an error message
+    }
+  } catch (error) {
+    console.error('Error occurred:', error);
+    // Handle error, show error message, etc.
+  }
+};
+
+const handleGuestLogin = async(message) => {
+// console.log(e);
+const storedMessage = message;
+// console.log("Stored message is:",storedMessage);
+  // Handle guest login action here (if needed)
+  handleSuccess(storedMessage);
+  console.log('Guest login action'); 
+  setTimeout(() => {
+    navigate("/");
+  }, 1500);
+};
 
   const handleInputChange = (event) => {
     const { name, value } = event.target;
@@ -31,10 +66,10 @@ const Login = () => {
       <body className="flex items-center justify-center h-screen bg-[#8c0c57]">
         <div className="bg-white p-8 rounded-lg shadow-md w-full max-w-sm  hover:shadow-[2px_2px_40px_rgba(27,2,17,0.6)]">
           <h1 className="text-2xl font-semibold mb-6 text-center">Login</h1>
-          <form id="loginForm" onSubmit={handleSubmit}>
+          <form id="loginForm" onSubmit={handleRegularLogin}>
             <div className="mb-4">
-              <label htmlFor="email" className="block text-gray-700 text-sm font-bold mb-2">Email</label>
-              <input type="email" id="email" name="email" required value={formData.email} onChange={handleInputChange}
+              <label htmlFor="username" className="block text-gray-700 text-sm font-bold mb-2">User name</label>
+              <input type='text' id="email" name="email" required value={formData.email} onChange={handleInputChange}
                 className="shadow appearance-none border rounded w-full py-2 px-3 text-gray-700 leading-tight focus:outline-none focus:shadow-outline"/>
             </div>
             <div className="mb-6">
@@ -49,8 +84,9 @@ const Login = () => {
               </button>
             </div>
           </form>
+          <ToastContainer />
           <p className="text-center my-4">OR</p>
-          <button id="guestLogin"
+          <button id="guestLogin" onClick={() => handleGuestLogin("Guest Logged In")}
                   className="bg-gray-300 hover:bg-gray-400 text-gray-800 font-bold py-2 px-4 rounded focus:outline-none focus:shadow-outline w-full">
               Continue as Guest
           </button>

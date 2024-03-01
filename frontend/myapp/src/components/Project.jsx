@@ -1,5 +1,7 @@
 // import ProjectsLayout from "./Project/AllPages/ProjectLayout";
 import { Link } from "react-router-dom";
+import create_project from "../Images/create_project.png"
+import search_project from "../Images/search_project.png"
 const Project = () => {
   return (
     <>
@@ -8,7 +10,7 @@ const Project = () => {
           <div class="max-w-sm rounded overflow-hidden shadow-lg">
             <img
               class="w-full"
-              src="/img/card-top.jpg"
+              src={create_project}
               alt="create new projects"
             />
             <div class="px-6 py-4">
@@ -31,7 +33,7 @@ const Project = () => {
         <div class="max-w-sm rounded overflow-hidden shadow-lg">
             <img
               class="w-full"
-              src="/img/card-top.jpg"
+              src={search_project}
               alt="search for prjects"
             />
             <div class="px-6 py-4">
