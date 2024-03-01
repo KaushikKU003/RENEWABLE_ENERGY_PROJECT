@@ -1,32 +1,23 @@
 import React, { useState } from 'react';
 import axios from 'axios';
-
+import {useNavigate } from "react-router-dom";
+import { ToastContainer, toast } from "react-toastify";
+import "react-toastify/dist/ReactToastify.css";
 const Login = () => {
+  const navigate = useNavigate();
   const [formData, setFormData] = useState({
     email: '',
     password: ''
   });
 
-//   const handleSubmit = async (event) => {
-//     event.preventDefault(); // Prevent default form submission
-//   try {
-//     // Simulate login for guest
-//     if (event.target.id === 'guestLogin') {
-//       // Handle guest login action here
-//       console.log('Guest login action'); // For demonstration purposes
-//     } else {
-//       // Regular login
-//       const response = await axios.post('http://localhost:4000/app/admin/admins/login', formData);
-//       console.log(response.data); // Log the response data
-//     }
-
-//     // Redirect to dashboard
-//     window.location.href = '/';
-//   } catch (error) {
-//     console.error('Error occurred:', error);
-//     // Handle error, show error message, etc.
-//   }
-// };
+  const handleError = (err) =>
+    toast.error(err, {
+      position: "bottom-left",
+    });
+const handleSuccess = (msg) =>
+    toast.success(msg, {
+      position: "top-right",
+    });
 const handleRegularLogin = async () => {
   try {
     const response = await axios.post('http://localhost:4000/app/admin/admins/login', formData);
@@ -34,9 +25,13 @@ const handleRegularLogin = async () => {
     
     if (response.data.success) {
       // Redirect to dashboard on successful login
-      window.location.href = '/';
+      handleSuccess("Login successful!")
+      setTimeout(() => {
+        navigate("/");
+      }, 1500)
     } else {
       // Handle unsuccessful login (show error message, etc.)
+      handleError("Login Failed")
       console.error('Login failed:', response.data.message);
       // You can handle the error in the UI, for example, by showing an error message
     }
@@ -46,11 +41,16 @@ const handleRegularLogin = async () => {
   }
 };
 
-const handleGuestLogin = () => {
+const handleGuestLogin = async(message) => {
+// console.log(e);
+const storedMessage = message;
+// console.log("Stored message is:",storedMessage);
   // Handle guest login action here (if needed)
-  console.log('Guest login action'); // For demonstration purposes
-  // Redirect to dashboard for guest login
-  window.location.href = '/';
+  handleSuccess(storedMessage);
+  console.log('Guest login action'); 
+  setTimeout(() => {
+    navigate("/");
+  }, 1500);
 };
 
   const handleInputChange = (event) => {
@@ -84,8 +84,9 @@ const handleGuestLogin = () => {
               </button>
             </div>
           </form>
+          <ToastContainer />
           <p className="text-center my-4">OR</p>
-          <button id="guestLogin" onClick={handleGuestLogin}
+          <button id="guestLogin" onClick={() => handleGuestLogin("Guest Logged In")}
                   className="bg-gray-300 hover:bg-gray-400 text-gray-800 font-bold py-2 px-4 rounded focus:outline-none focus:shadow-outline w-full">
               Continue as Guest
           </button>
