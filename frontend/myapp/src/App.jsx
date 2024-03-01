@@ -7,6 +7,8 @@ import Project from './components/Project';
 // import ProjectsLayout from './components/Project/AllPages/ProjectLayout';
 import ProjectDetails from './components/Project/projectDetails';
 import FinanceDetails from './components/Project/financeDetails';
+import ProjectSearch from './components/Project/projectSearch';
+
 // import LayoutApp from './components/Project/LayoutApp';
 function App() {
   return (
@@ -14,6 +16,7 @@ function App() {
     <BrowserRouter>
       <Routes>
         <Route path="/" element={<Layout />}>
+          
           <Route index element={<Dashboard />} />
           <Route path="/project" element={<Project />} />
         </Route>
@@ -23,6 +26,9 @@ function App() {
           <Route path='/risksdetails' element={<ProjectDetails/>}/>
           <Route path='/locationdetails' element={<ProjectDetails/>}/>
           <Route path='/orgdetails' element={<ProjectDetails/>}/>
+          <Route path = '/dashboard' element={<Dashboard/>}/>
+          <Route path = '/search' element={<ProjectSearch/>}/>
+          
         <Route path="/login" element={<Login />} />
       </Routes>
     </BrowserRouter>
