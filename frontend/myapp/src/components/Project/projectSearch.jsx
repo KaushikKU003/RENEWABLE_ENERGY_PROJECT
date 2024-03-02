@@ -9,22 +9,27 @@ function ProjectSearch() {
   const [searchType, setSearchType] = useState(null);
   const [projects, setProjects] = useState([]);
 
-  console.log(searchType)
+  console.log(searchType);
   const facultyOptions = [
     { value: "project_name", label: "PROJECT NAME" },
     { value: "type", label: "PROJECT TYPE" },
+    { value: "start_date", label: "YEAR" },
   ];
 
   const handleSearch = async () => {
     try {
-      const response = await axios.get(
-        `http://localhost:4000/app/project/projects?searchTerm=${searchTerm}&searchBy=${searchType.value}`
-      );
-
-      if (response.data.success === true) {
-        setProjects(response.data.data);
+      if (!searchType) {
+        toast.error("Choose search type");
       } else {
-        console.log("No projects matched");
+        const response = await axios.get(
+          `http://localhost:4000/app/project/projects?searchTerm=${searchTerm}&searchBy=${searchType.value}`
+        );
+
+        if (response.data.success === true) {
+          setProjects(response.data.data);
+        } else {
+          console.log("No projects matched");
+        }
       }
     } catch (error) {
       console.log(error);
@@ -33,42 +38,57 @@ function ProjectSearch() {
 
   return (
     <div>
-      <div className="flex justify-center mt-20 gap-4">
-        <input
-          type="text"
-          placeholder="Search..."
-          value={searchTerm}
-          onChange={(e) => setSearchTerm(e.target.value)}
-          className="border border-black w-1/2 h-10 mt-6"
-        />
-        <button
-          onClick={handleSearch}
-          className=" px-7 rounded-3xl bg-green-400"
-        >
-          Search
-        </button>
-
+      <center>
+        <h2 className="text-5xl">Search Projects</h2>
+        <div className="md:flex justify-center mt-10 gap-4">
+          <input
+            type="text"
+            placeholder="Search..."
+            value={searchTerm}
+            onChange={(e) => setSearchTerm(e.target.value)}
+            className="border border-black w-1/2 h-10  rounded-md"
+          />
+          <button
+            onClick={handleSearch}
+            className="bg-red-400 p-2 rounded-full md:px-9 ml-3"
+          >
+            Search
+          </button>
+        </div>
+      </center>
+      <center>
         <Select
           options={facultyOptions}
           placeholder="Select Search type"
           isSearchable
           value={searchType}
           onChange={setSearchType}
-          className="custom-select w-1/4 m-5 border border-blue-500 rounded"
+          className="custom-select w-1/2 m-5 border border-blue-500 rounded md:w-1/4"
         />
+      </center>
+
+      <div className="flex flex-wrap gap-5 justify-center my-5">
+        {projects &&
+          projects.map((project) => (
+            <div
+              key={project.project_id}
+              className="mt-10 md:h-40 bg-slate-400 flex flex-col items-center rounded-3xl justify-around md:p-5 md:w-1/4 mx-auto h-1/2 w-1/2 p-5"
+            >
+              <p>Project Name: {project.project_name}</p>
+              <p>Type: {project.type}</p>
+
+              <button
+                type="button"
+                className="bg-red-400 p-2 rounded-full px-5"
+                onClick={() => {
+                  /* Handle button click */
+                }}
+              >
+                VIEW
+              </button>
+            </div>
+          ))}
       </div>
-      {projects && (
-        <div>
-          <h2>Projects:</h2>
-          <ul>
-            {projects.map((project) => (
-              <li key={project.project_id}>
-                Project Name: {project.project_name}, Type: {project.type}
-              </li>
-            ))}
-          </ul>
-        </div>
-      )}
     </div>
   );
 }

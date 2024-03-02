@@ -8,6 +8,7 @@ import Project from './components/Project';
 import ProjectDetails from './components/Project/projectDetails';
 import FinanceDetails from './components/Project/financeDetails';
 import ProjectSearch from './components/Project/projectSearch';
+import { Toaster } from 'react-hot-toast';
 
 // import LayoutApp from './components/Project/LayoutApp';
 function App() {
@@ -30,8 +31,10 @@ function App() {
           <Route path = '/search' element={<ProjectSearch/>}/>
           
         <Route path="/login" element={<Login />} />
+       
       </Routes>
     </BrowserRouter>
+    <Toaster/>
     </>
    
   );
