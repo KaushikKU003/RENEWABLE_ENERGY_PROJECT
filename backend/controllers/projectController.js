@@ -119,6 +119,36 @@ router.put("/projects/:id", (req, res) => {
   }
 });
 
+router.get("/projects/year", (req, res) => {
+  try {
+    db.query(
+      "SELECT YEAR(start_date) as year, count(*) as project_count from project group by YEAR(start_date)",
+      (error, results) => {
+        if (error) {
+          return res.status(500).json({
+            success: false,
+            message: "An error occurred while fetching project count by year",
+            error: error.message,
+          });
+        }
+
+        return res.status(200).json({
+          success: true,
+          message: "Project count by year fetched successfully",
+          data: results,
+        });
+      }
+    );
+  } catch (error) {
+    return res.status(500).json({
+      success: false,
+      message: "An error occurred while processing the request",
+      error: error.message,
+    });
+  }
+});
+
+
 router.get("/project-count", (req, res) => {
   try {
     db.query(
@@ -148,8 +178,6 @@ router.get("/project-count", (req, res) => {
   }
 });
 
-
-
 router.get("/projects", (req, res) => {
   try {
     const searchTerm = req.query.searchTerm;
@@ -169,6 +197,8 @@ router.get("/projects", (req, res) => {
       sql = "SELECT * FROM project WHERE project_name LIKE ?";
     } else if (searchBy === "type") {
       sql = "SELECT * FROM project WHERE type LIKE ?";
+    } else if (searchBy === "start_date") {
+      sql = "SELECT * FROM project WHERE YEAR(start_date) = ?";
     } else {
       return res.status(400).json({
         success: false,
@@ -176,7 +206,12 @@ router.get("/projects", (req, res) => {
       });
     }
 
-    params.push(`%${searchTerm}%`);
+    if(searchBy==="start_date"){
+    params.push(searchTerm);
+    }
+    else{
+      params.push(`%${searchTerm}%`);
+    }
 
     db.query(sql, params, (error, results) => {
       if (error) {

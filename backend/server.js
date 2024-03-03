@@ -6,11 +6,14 @@ const locationRouter = require("./controllers/locationController")
 const organizationRouter = require("./controllers/organiztionController")
 const benefitRouter = require("./controllers/benefitController")
 const riskRouter = require("./controllers/riskController")
+const cors = require('cors')
 
 
 const app = express();
 
 app.use(express.json());
+
+app.use(cors())
 
 
 app.use("/app/admin", adminRouter);

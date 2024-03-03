@@ -49,10 +49,10 @@ function ProjectSearch() {
             className="border border-black w-1/2 h-10  rounded-md"
           />
           <button
-            onClick={handleSearch}
-            className="bg-red-400 p-2 rounded-full md:px-9 ml-3"
+            type="submit"
+            className="bg-[#1B1A55] hover:bg-[#39368b] text-white font-normal py-1 px-2 rounded focus:outline-none focus:shadow-outline content-center mt-1"onClick={handleSearch}
           >
-            Search
+            SEARCH
           </button>
         </div>
       </center>
@@ -72,17 +72,17 @@ function ProjectSearch() {
           projects.map((project) => (
             <div
               key={project.project_id}
-              className="mt-10 md:h-40 bg-slate-400 flex flex-col items-center rounded-3xl justify-around md:p-5 md:w-1/4 mx-auto h-1/2 w-1/2 p-5"
+              className="mt-10 md:h-40 bg-slate-300 flex flex-col items-center rounded-3xl justify-around md:p-5 md:w-1/4 mx-auto h-1/2 w-1/2 p-5 shadow-black shadow-md"
             >
-              <p>Project Name: {project.project_name}</p>
-              <p>Type: {project.type}</p>
+              <p className="font-bold">Project Name: {project.project_name}</p>
+              <p className="font-bold">Type: {project.type}</p>
+              <p className="font-bold">
+                Year: {project.start_date.substring(0, 4)}
+              </p>
 
               <button
-                type="button"
-                className="bg-red-400 p-2 rounded-full px-5"
-                onClick={() => {
-                  /* Handle button click */
-                }}
+                type="submit"
+                className="bg-[#1B1A55] hover:bg-[#39368b] text-white font-normal py-1 px-2 rounded focus:outline-none focus:shadow-outline content-center mt-1"
               >
                 VIEW
               </button>
