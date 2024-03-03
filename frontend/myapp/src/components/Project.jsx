@@ -1,7 +1,7 @@
 // import ProjectsLayout from "./Project/AllPages/ProjectLayout";
 import { Link } from "react-router-dom";
-import create_project from "../Images/create_project.png"
-import search_project from "../Images/search_project.png"
+import create_project from "../components/Images/create_project.png"
+import search_project from "../components/Images/search_project.png"
 const Project = () => {
   return (
     <>
