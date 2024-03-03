@@ -17,6 +17,8 @@ router.post("/projects", (req, res) => {
       });
     }
 
+    
+
     db.query(
       "INSERT INTO project(project_name,type,capacity,status,start_date,end_date) VALUES(?,?,?,?,?,?)",
       [project_name, type, capacity, status, start_date, end_date],
@@ -28,11 +30,13 @@ router.post("/projects", (req, res) => {
             message: error,
           });
         }
+        const projectId = result.insertId;
+        
         return res.json({
           status: 201,
           success: true,
           message: "Project created successfully",
-          project: result[0],
+          project_id: projectId
         });
       }
     );
