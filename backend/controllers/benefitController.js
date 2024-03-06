@@ -2,7 +2,7 @@ const express = require("express");
 const db = require("../db");
 const router = express.Router();
 
-router.post('/benefits/:projectId',()=>{
+router.post('/benefits/:projectId',(req,res)=>{
     try {
         const project_id = req.params.projectId;
         console.log(project_id);
@@ -53,7 +53,7 @@ router.post('/benefits/:projectId',()=>{
       }
 })
 
-router.put('/benefits/:id',()=>{
+router.put('/benefits/:id',(req,res)=>{
     try {
         const benefitId = req.params.id;
         const {

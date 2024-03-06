@@ -2,7 +2,7 @@ const express = require("express");
 const db = require("../db");
 const router = express.Router();
 
-router.post('/organizations/:projectId',()=>{
+router.post('/organizations/:projectId',(req,res)=>{
     try {
         const project_id = req.params.projectId;
         console.log(project_id);
@@ -46,7 +46,7 @@ router.post('/organizations/:projectId',()=>{
       }
 })
 
-router.put('/organizations/:id',()=>{
+router.put('/organizations/:id',(req,res)=>{
     try {
         const orgId = req.params.id;
         const { organization_name, organization_type, contact_info } = req.body;
