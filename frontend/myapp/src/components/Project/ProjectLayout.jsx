@@ -1,26 +1,27 @@
 const ProjectsLayout = () => {
+  const projectId=localStorage.getItem("project_id")
   return (
     <>
-    <div class="grid grid-cols-4 gap-x-4">
+    <div class="grid grid-cols-4 gap-x-4 bg-[#303030]">
   <div class="bg-purple-900 text-center py-2 rounded-lg">
-    <a href="/projectsdetails" class="text-white font-extrabold">Project Details</a>
+    <a href={`/projectsdetails`} class="text-white font-extrabold">Project Details</a>
   </div>
   <div class="bg-indigo-900 text-center py-2 rounded-lg">
-    <a href="/financesdetails" class="text-white font-extrabold">Finance Details</a>
+    <a href={`/financesdetails/${projectId}`} class="text-white font-extrabold">Finance Details</a>
   </div>
   <div class="bg-violet-900 text-center py-2 rounded-lg">
-    <a href="/benifitsdetails" class="text-white font-extrabold">Project Benefits</a>
+    <a href={`/benifitsdetails/${projectId}`} class="text-white font-extrabold">Project Benefits</a>
   </div>
   <div class="bg-fuchsia-900 text-center py-2 rounded-lg">
-    <a href="/risksdetails" class="text-white font-extrabold">Project Risks</a>
+    <a href={`/riskdetails/${projectId}`} class="text-white font-extrabold">Project Risks</a>
   </div>
   </div>
-  <div class='flex  justify-around mt-2'>
+  <div class='flex  justify-around mt-2 bg-[#303030]'>
   <div class="bg-red-600 text-center py-2 px-24 rounded-lg">
-    <a href="/locationdetails" class="text-white font-extrabold block">Location Details</a>
+    <a href={`/locationdetails/${projectId}`} class="text-white font-extrabold block">Location Details</a>
   </div>
   <div class="bg-red-400 text-center py-2 px-24 rounded-lg">
-    <a href="/orgdetails" class="text-white font-extrabold block">Organization Details</a>
+    <a href={`/orgdetails/${projectId}`} class="text-white font-extrabold block">Organization Details</a>
   </div>
 </div>
     </>
