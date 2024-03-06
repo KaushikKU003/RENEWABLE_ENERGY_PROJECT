@@ -1,6 +1,8 @@
 import React, { useState, useEffect } from "react";
 import axios from "axios";
 import { useParams } from "react-router-dom";
+import factory from "../Images/factory.png";
+import { Link } from "react-router-dom";
 
 function ProjectDisplay() {
   const { project_id } = useParams();
@@ -20,19 +22,79 @@ function ProjectDisplay() {
       console.error("Error fetching project:", error);
     }
   };
-
   return (
-    <div className="bg-black h-screen flex justify-center items-center">
+    <div className="bg-black bg-opacity-95 h-screen flex justify-center items-center">
       {project && (
-        <div className="mt-15 md:h-4/5 md:w-4/6 bg-green-300 flex flex-col items-center rounded-3xl justify-around md:p-5 mx-auto p-5 shadow-black shadow-md">
-          <p className="font-bold">Project Name: {project.project_name}</p>
-          <p className="font-bold">Type: {project.type}</p>
-          <p className="font-bold">Year: {project.start_date.substring(0, 4)}</p>
+        <div className="mt-15 md:h-4/5 md:w-4/6 bg-black bg-opacity-95 rounded-3xl md:p-5  shadow-white  shadow-md flex flex-wrap">
+          <div className="flex flex-col mb-80 text-white">
+            <img src={factory} alt="no-img" className="w-24 h-24 mb-5" />
+            <p className="font-bold">Project Name: {project.project_name}</p>
+            <p className="font-bold">Type: {project.type}</p>
+            <p className="font-bold">
+              {" "}
+              Established Year: {project.start_date.substring(0, 4)}
+            </p>
+          </div>
+
+          <div className="flex flex-col mb-96 ml-10 p-3 rounded-lg bg-white">
+            <h2 className="text-2xl font-bold">ORGANIZATION DETAILS</h2>
+            <p className="font-bold">
+              Organization Type: {project.organization_type}
+            </p>
+            <p className="font-bold">
+              Organization Name: {project.organization_name}
+            </p>
+          </div>
+
+          <div className="mb-96 ml-10 p-3 rounded-lg bg-white relative top-0">
+            <h2 className="text-2xl font-bold">LOCATION DETAILS</h2>
+            <p className="font-bold">Location name: {project.location_name}</p>
+            <p className="font-bold">Country: {project.country}</p>
+          </div>
+
+          <div className=" ml-10 p-3 rounded-lg bg-white relative bottom-1/3 left-80 mb-5">
+            <h2 className="text-2xl font-bold">BENEFIT DETAILS</h2>
+            <p className="font-bold">CO2 Reduction: {project.co2_reduction}</p>
+            <p className="font-bold">Other benfits: {project.other_benifits}</p>
+          </div>
+
+          <div className=" ml-10 p-3 rounded-lg bg-white relative bottom-3/4 right-24">
+            <h2 className="text-2xl font-bold">FINANCE DETAILS</h2>
+            <p className="font-bold">Total cost: {project.total_cost}</p>
+            <p className="font-bold">
+              Funding Source: {project.funding_source}
+            </p>
+            <p className="font-bold">
+              Revenue generation: {project.revenue_generation}
+            </p>
+            <p className="font-bold">
+              Return on investment: {project.return_on_investment}
+            </p>
+          </div>
+
+          <div className="ml-10 p-3 rounded-lg bg-white relative bottom-3/4 right-6">
+            <h2 className="text-2xl font-bold">RISK DETAILS</h2>
+            <p className="font-bold">Impact: {project.impact}</p>
+            <p className="font-bold">Likelihood: {project.Likelihood}</p>
+            <p className="font-bold">
+              Revenue generation: {project.revenue_generation}
+            </p>
+            <p className="font-bold">Description: {project.risk_description}</p>
+          </div>
+          <div className="mb-96 ml-10 p-3 rounded-lg relative bottom-full right-10 mt-20">
+            <div class="text-center">
+              <Link
+                to="/search"
+                className="bg-[#1B1A55] hover:bg-[#39368b] text-white font-normal py-3 px-2 rounded focus:outline-none focus:shadow-outline content-center"
+              >
+               View on Maps
+              </Link>
+            </div>
+          </div>
         </div>
       )}
     </div>
   );
-  
 }
 
 export default ProjectDisplay;

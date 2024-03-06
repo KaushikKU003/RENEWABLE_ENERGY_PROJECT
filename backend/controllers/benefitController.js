@@ -22,7 +22,7 @@ router.post('/benefits/:projectId',(req,res)=>{
         }
     
         db.query(
-          "INSERT INTO benefit (project_id, co2_reduction, other_benefits) VALUES (?, ?, ?)",
+          "INSERT INTO benefit (project_id, co2_reduction, other_benifits) VALUES (?, ?, ?)",
           [
             project_id,
             co2_reduction,

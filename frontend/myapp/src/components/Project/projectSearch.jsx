@@ -38,15 +38,14 @@ function ProjectSearch() {
     }
   };
 
-
   const handleSubmit = (project_id) => {
     navigate(`/displayproject/${project_id}`);
   };
 
   return (
-    <div>
+    <div className="bg-black bg-opacity-95 min-h-screen">
       <center>
-        <h2 className="text-5xl">Search Projects</h2>
+        <h2 className="text-5xl text-white">Search Projects</h2>
         <div className="md:flex justify-center mt-10 gap-4">
           <input
             type="text"
@@ -80,7 +79,7 @@ function ProjectSearch() {
           projects.map((project) => (
             <div
               key={project.project_id}
-              className="mt-10 md:h-40 bg-slate-300 flex flex-col items-center rounded-3xl justify-around md:p-5 md:w-1/4 mx-auto h-1/2 w-1/2 p-5 shadow-black shadow-md"
+              className="mt-10 md:h-40 bg-black bg-opacity-95 flex flex-col items-center rounded-3xl justify-around md:p-5 md:w-1/4 mx-auto h-1/2 w-1/2 p-5 shadow-white shadow-md text-white"
             >
               <p className="font-bold">Project Name: {project.project_name}</p>
               <p className="font-bold">Type: {project.type}</p>
