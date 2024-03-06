@@ -23,23 +23,16 @@ function App() {
       <Routes>
           <Route path="/login" index element={<Login />} />
           <Route path="/" element={<Layout />}>
-          <Route  index element={<Dashboard />} />
-          
-          <Route index element={<Dashboard />} />
+          <Route  element={<Dashboard />} />
           <Route path="/project" element={<Project />} />
         </Route>
           <Route path='/projectsdetails' element={<ProjectDetails/>}/>
-          <Route path='/financesdetails' element={<FinanceDetails/>}/>
-
-          <Route path='/benifitsdetails' element={<ProjectBenits/>}/>
-          <Route path='/riskdetails' element={<ProjectRisks/>}/>
-          <Route path='/locationdetails' element={<ProjectLocation/>}/>
-          <Route path='/orgdetails' element={<ProjectOrganization/>}/>
-
-          <Route path='/benifitsdetails' element={<ProjectDetails/>}/>
-          <Route path='/risksdetails' element={<ProjectDetails/>}/>
-          <Route path='/locationdetails' element={<ProjectDetails/>}/>
-          <Route path='/orgdetails' element={<ProjectDetails/>}/>
+          <Route path='/financesdetails/:projectId' element={<FinanceDetails/>}/>
+          <Route path='/benifitsdetails/:projectId' element={<ProjectBenits/>}/>
+          <Route path='/riskdetails/:projectId' element={<ProjectRisks/>}/>
+          <Route path='/locationdetails/:projectId' element={<ProjectLocation/>}/>
+          <Route path='/orgdetails/:projectId' element={<ProjectOrganization/>}/>
+          
           <Route path = '/dashboard' element={<Dashboard/>}/>
           <Route path = '/search' element={<ProjectSearch/>}/>
          

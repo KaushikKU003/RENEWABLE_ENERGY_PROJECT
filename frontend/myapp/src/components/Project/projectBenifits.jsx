@@ -4,8 +4,8 @@ import { useNavigate } from 'react-router-dom';
 import { ToastContainer, toast } from "react-toastify";
 const ProjectBenefits = () => {
     const [benefits, setBenefits] = useState({
-        co2_reduction: '',
-    other_benefits: ''
+      co2_reduction: '',
+      other_benefits: ''
       });
       const navigate = useNavigate();
       const handleSuccess = (msg) =>
@@ -34,7 +34,14 @@ const ProjectBenefits = () => {
           [name]: value
         }));
     }
-
+    const NavigationFront=()=>{
+      const projectId=localStorage.getItem("project_id")
+      navigate(`/riskdetails/${projectId}`)
+    }
+    const NavigationBack=()=>{
+      const projectId=localStorage.getItem("project_id")
+      navigate(`/financesdetails/${projectId}`)
+    }
     return ( 
         <>
        <ProjectsLayout/>
@@ -47,13 +54,13 @@ const ProjectBenefits = () => {
         <input type="number" id="co2_reduction" name="co2_reduction" value={benefits.co2_reduction} onChange={handleInputChange} className="shadow appearance-none border rounded w-full py-2 px-3 mb-3 text-gray-700 leading-tight focus:outline-none focus:shadow-outline" />
       </div>
       <div>
-        <label htmlFor="other_benifits" className="block text-gray-700 text-sm font-bold mb-2">Other Project Benifits:</label>
-        <input type="text" id="other_benifits" name="other_benifits" value={benefits.other_benifits} onChange={handleInputChange} className="shadow appearance-none border rounded w-full py-2 px-3 mb-3 text-gray-700 leading-tight focus:outline-none focus:shadow-outline" />
+        <label htmlFor="other_benefits" className="block text-gray-700 text-sm font-bold mb-2">Other Project Benefits:</label>
+        <input type="text" id="other_benefits" name="other_benefits" value={benefits.other_benefits} onChange={handleInputChange} className="shadow appearance-none border rounded w-full py-2 px-3 mb-3 text-gray-700 leading-tight focus:outline-none focus:shadow-outline" />
       </div>
       <div className='flex justify-evenly'>
-      <button type="submit" className="mt-4 bg-indigo-600 text-white py-2 px-4 rounded hover:bg-indigo-700" onClick={() => navigate('/financesdetails')}>Back</button>
+      <button type="submit" className="mt-4 bg-indigo-600 text-white py-2 px-4 rounded hover:bg-indigo-700" onClick={NavigationBack}>Back</button>
       <button type="submit" className="mt-4 bg-indigo-600 text-white py-2 px-4 rounded hover:bg-indigo-700 " >Save</button>
-      <button type="submit" className="mt-4 bg-indigo-600 text-white py-2 px-4 rounded hover:bg-indigo-700 " onClick={() => navigate('/riskdetails')}>Next</button>
+      <button type="submit" className="mt-4 bg-indigo-600 text-white py-2 px-4 rounded hover:bg-indigo-700 " onClick={NavigationFront}>Next</button>
       </div>    
       </form>
       <ToastContainer />
