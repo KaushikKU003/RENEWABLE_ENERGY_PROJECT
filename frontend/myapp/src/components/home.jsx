@@ -115,7 +115,8 @@ const ProjectPieChart = () => {
   };
 
   return (
-    <>
+    <div className="bg-black-200 text-white">
+    
       <center>
         <h1 className="mt-5 text-4xl">PROJECT SUMMARY</h1>
       </center>
@@ -123,7 +124,8 @@ const ProjectPieChart = () => {
         <canvas id="projectChart"></canvas>
         <canvas id="projectBarChart" className="mt-20"></canvas>
       </div>
-    </>
+    
+    </div>
   );
 };
 

@@ -3,11 +3,13 @@ import axios from "axios";
 import { useState, useEffect } from "react";
 import Select from "react-select";
 import { Toaster, toast } from "react-hot-toast";
+import { useNavigate } from "react-router-dom";
 
 function ProjectSearch() {
   const [searchTerm, setSearchTerm] = useState("");
   const [searchType, setSearchType] = useState(null);
   const [projects, setProjects] = useState([]);
+  const navigate = useNavigate();
 
   console.log(searchType);
   const facultyOptions = [
@@ -36,6 +38,11 @@ function ProjectSearch() {
     }
   };
 
+
+  const handleSubmit = (project_id) => {
+    navigate(`/displayproject/${project_id}`);
+  };
+
   return (
     <div>
       <center>
@@ -50,7 +57,8 @@ function ProjectSearch() {
           />
           <button
             type="submit"
-            className="bg-[#1B1A55] hover:bg-[#39368b] text-white font-normal py-1 px-2 rounded focus:outline-none focus:shadow-outline content-center mt-1"onClick={handleSearch}
+            className="bg-[#1B1A55] hover:bg-[#39368b] text-white font-normal py-1 px-2 rounded focus:outline-none focus:shadow-outline content-center mt-1"
+            onClick={handleSearch}
           >
             SEARCH
           </button>
@@ -83,6 +91,7 @@ function ProjectSearch() {
               <button
                 type="submit"
                 className="bg-[#1B1A55] hover:bg-[#39368b] text-white font-normal py-1 px-2 rounded focus:outline-none focus:shadow-outline content-center mt-1"
+                onClick={() => handleSubmit(project.project_id)}
               >
                 VIEW
               </button>
