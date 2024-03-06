@@ -8,13 +8,11 @@ const benefitRouter = require("./controllers/benefitController")
 const riskRouter = require("./controllers/riskController")
 const cors = require('cors')
 
-
 const app = express();
 
 app.use(express.json());
 
 app.use(cors())
-
 
 app.use("/app/admin", adminRouter);
 app.use("/app/project",projectRouter)
@@ -23,7 +21,6 @@ app.use("/app/location",locationRouter)
 app.use("/app/organization",organizationRouter)
 app.use("/app/benefit",benefitRouter)
 app.use("/app/risk",riskRouter)
-
 
 
 app.listen(4000, () => {

@@ -17,8 +17,6 @@ router.post("/projects", (req, res) => {
       });
     }
 
-    
-
     db.query(
       "INSERT INTO project(project_name,type,capacity,status,start_date,end_date) VALUES(?,?,?,?,?,?)",
       [project_name, type, capacity, status, start_date, end_date],
@@ -31,12 +29,12 @@ router.post("/projects", (req, res) => {
           });
         }
         const projectId = result.insertId;
-        
+
         return res.json({
           status: 201,
           success: true,
           message: "Project created successfully",
-          project_id: projectId
+          project_id: projectId,
         });
       }
     );
@@ -182,6 +180,7 @@ router.get("/project-count", (req, res) => {
   }
 });
 
+
 router.get("/projects", (req, res) => {
   try {
     const searchTerm = req.query.searchTerm;
@@ -210,10 +209,9 @@ router.get("/projects", (req, res) => {
       });
     }
 
-    if(searchBy==="start_date"){
-    params.push(searchTerm);
-    }
-    else{
+    if (searchBy === "start_date") {
+      params.push(searchTerm);
+    } else {
       params.push(`%${searchTerm}%`);
     }
 
@@ -230,6 +228,60 @@ router.get("/projects", (req, res) => {
         success: true,
         message: "Projects fetched successfully",
         data: results,
+      });
+    });
+  } catch (error) {
+    return res.status(500).json({
+      success: false,
+      message: "Internal server error",
+      error: error.message,
+    });
+  }
+});
+
+
+
+router.get("/projects/:id", (req, res) => {
+  try {
+    const projectId = req.params.id;
+
+    if (!projectId) {
+      return res.status(400).json({
+        success: false,
+        message: "No project ID found in the request",
+      });
+    }
+
+    const sql = `
+      SELECT project_name, type, start_date, status, capacity, location_name, country,organization_name,organization_type,contact_info, total_cost,funding_source, revenue_generation, return_on_investment,co2_reduction,other_benifits,impact,Likelihood,risk_description
+      FROM project p
+      JOIN location l ON p.project_id = l.project_id
+      JOIN organization o ON p.project_id  = o.project_id
+      JOIN finance f ON p.project_id  = f.project_id
+      JOIN benefit b ON p.project_id  = b.project_id
+      JOIN risk r ON p.project_id  = r.project_id
+      WHERE p.project_id = ?`;
+
+    db.query(sql, [projectId], (error, results) => {
+      if (error) {
+        return res.status(500).json({
+          success: false,
+          message: "Internal server error",
+          error: error.message,
+        });
+      }
+
+      if (results.length === 0) {
+        return res.status(404).json({
+          success: false,
+          message: "Project not found",
+        });
+      }
+
+      // Send the project details in the response
+      res.status(200).json({
+        success: true,
+        project: results[0], // Assuming only one project is expected
       });
     });
   } catch (error) {
