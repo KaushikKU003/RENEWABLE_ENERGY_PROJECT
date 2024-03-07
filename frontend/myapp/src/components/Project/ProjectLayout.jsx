@@ -2,28 +2,42 @@ const ProjectsLayout = () => {
   const projectId=localStorage.getItem("project_id")
   return (
     <>
-    <div class="grid grid-cols-4 gap-x-4 bg-[#303030]">
-  <div class="bg-purple-900 text-center py-2 rounded-lg">
-    <a href={`/projectsdetails`} class="text-white font-extrabold">Project Details</a>
+    <div className="bg-[#303030]">
+    <div class="grid grid-cols-4 gap-x-4 bg-[#303030] p-2">
+      <div className="group">
+        <div class=" bg-[#6867677f] text-center py-2 rounded-lg border-gray-200 border-2  group-hover:bg-[#ffffff]  ">
+          <a href={`/projectsdetails`} class="text-white font-extrabold tracking-wider group-hover:text-black ">Project Details</a>
+        </div>
+      </div>
+      <div className="group">
+  <div class="bg-[#6867677f] text-center py-2 rounded-lg border-gray-200 border-2 group-hover:bg-[#ffffff]">
+    <a href={`/financesdetails/${projectId}`} class="text-white font-extrabold tracking-wider group-hover:text-black">Finance Details</a>
   </div>
-  <div class="bg-indigo-900 text-center py-2 rounded-lg">
-    <a href={`/financesdetails/${projectId}`} class="text-white font-extrabold">Finance Details</a>
+      </div>
+      <div className="group">
+  <div class="bg-[#6867677f] text-center py-2 rounded-lg border-gray-200 border-2 group-hover:bg-[#ffffff]">
+    <a href={`/benifitsdetails/${projectId}`} class="text-white font-extrabold tracking-wider group-hover:text-black">Project Benefits</a>
   </div>
-  <div class="bg-violet-900 text-center py-2 rounded-lg">
-    <a href={`/benifitsdetails/${projectId}`} class="text-white font-extrabold">Project Benefits</a>
+      </div >
+      <div className="group">
+  <div class="bg-[#6867677f] text-center py-2 rounded-lg border-gray-200 border-2 group-hover:bg-[#ffffff]">
+    <a href={`/riskdetails/${projectId}`} class="text-white font-extrabold tracking-wider group-hover:text-black">Project Risks</a>
   </div>
-  <div class="bg-fuchsia-900 text-center py-2 rounded-lg">
-    <a href={`/riskdetails/${projectId}`} class="text-white font-extrabold">Project Risks</a>
+      </div>
   </div>
+  <div class='flex  justify-around bg-[#303030] p-2'>
+    <div className="group">
+  <div class="bg-[#6867677f] text-center py-2 px-24 rounded-lg border-gray-200 border-2 group-hover:bg-[#ffffff]">
+    <a href={`/locationdetails/${projectId}`} class="text-white font-extrabold block tracking-wider group-hover:text-black">Location Details</a>
   </div>
-  <div class='flex  justify-around mt-2 bg-[#303030]'>
-  <div class="bg-red-600 text-center py-2 px-24 rounded-lg">
-    <a href={`/locationdetails/${projectId}`} class="text-white font-extrabold block">Location Details</a>
+    </div>
+    <div className="group">
+  <div class="bg-[#6867677f] text-center py-2 px-24 rounded-lg border-gray-200 border-2 group-hover:bg-[#ffffff]">
+    <a href={`/orgdetails/${projectId}`} class="text-white font-extrabold block tracking-wider group-hover:text-black">Organization Details</a>
   </div>
-  <div class="bg-red-400 text-center py-2 px-24 rounded-lg">
-    <a href={`/orgdetails/${projectId}`} class="text-white font-extrabold block">Organization Details</a>
-  </div>
+    </div>
 </div>
+    </div>
     </>
   );
 };

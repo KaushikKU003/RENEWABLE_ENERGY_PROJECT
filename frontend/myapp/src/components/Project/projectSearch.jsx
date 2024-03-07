@@ -39,7 +39,7 @@ function ProjectSearch() {
   return (
     <div>
       <center>
-        <h2 className="text-5xl">Search Projects</h2>
+        <h2 className="text-5xl bg-[#303030] text-white font-monospace p-4 font-semibold">Search Projects</h2>
         <div className="md:flex justify-center mt-10 gap-4">
           <input
             type="text"

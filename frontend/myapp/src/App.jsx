@@ -11,7 +11,7 @@ import ProjectBenits from './components/Project/projectBenifits';
 import ProjectRisks from './components/Project/projectRisks';
 import ProjectLocation from './components/Project/locationDetails';
 import ProjectOrganization from './components/Project/organisationDetails';
-
+import NotFound from './components/notfound';
 import ProjectSearch from './components/Project/projectSearch';
 import { Toaster } from 'react-hot-toast';
 
@@ -25,6 +25,7 @@ function App() {
           <Route path="/" element={<Layout />}>
           <Route  element={<Dashboard />} />
           <Route path="/project" element={<Project />} />
+          <Route path="/*" element={<NotFound />} />
         </Route>
           <Route path='/projectsdetails' element={<ProjectDetails/>}/>
           <Route path='/financesdetails/:projectId' element={<FinanceDetails/>}/>
