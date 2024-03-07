@@ -49,8 +49,8 @@ const FinanceDetails = () => {
   return (
     <>
        <ProjectsLayout/>
-       <div className="min-h-[95vh] div-bg flex justify-center items-baseline">
-    <div className="bg-white p-8 rounded-lg shadow-md w-full max-w-[50%] mx-auto mt-10">
+       <div className="min-h-[95vh] bg-[#202020] flex justify-center items-baseline">
+    <div className="bg-[#f8f5f5] p-8 rounded-lg shadow-md w-full max-w-[50%] mx-auto mt-10">
       <h1 className="text-2xl font-semibold mb-6 text-center">Finance Details</h1>
       <form class='max-w-[75%] m-auto ' onSubmit={handleSubmit}>
       <div>
@@ -71,7 +71,7 @@ const FinanceDetails = () => {
       </div>
       <div className='flex justify-evenly'>
       <button type="submit" className="mt-4 bg-indigo-600 text-white py-2 px-4 rounded hover:bg-indigo-700" onClick={NavigationBack}>Back</button>
-      <button type="submit" className="mt-4 bg-indigo-600 text-white py-2 px-4 rounded hover:bg-indigo-700 " >Save</button>
+      <button type="submit" className="mt-4 bg-green-600 text-white py-2 px-4 rounded hover:bg-indigo-700 " >Save</button>
       <button type="submit" className="mt-4 bg-indigo-600 text-white py-2 px-4 rounded hover:bg-indigo-700 " onClick={NavigationFront}>Next</button>
       </div>    
       </form>

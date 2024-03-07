@@ -2,7 +2,9 @@
 import { Link } from "react-router-dom";
 import create_project from "../components/Images/create_project.png"
 import search_project from "../components/Images/search_project.png"
+// import { useNavigate } from "react-router-dom";
 const Project = () => {
+  // const navigate=useNavigate()
   return (
     <>
       <div class="h-screen flex justify-around items-center bg-black">
@@ -19,9 +21,10 @@ const Project = () => {
                 You can create new renewable Projects along with other details
               </p>
               <div class="text-center">
+
               <Link
                   to="/projectsdetails" // Specify the path to navigate to
-                  className="bg-[#1B1A55] hover:bg-[#39368b] text-white font-normal py-1 px-2 rounded focus:outline-none focus:shadow-outline content-center mt-1"
+                  className="bg-[#3d3d3d] hover:text-[#3d3d3d] hover:bg-[#b9b9b9] hover:font-bold text-white font-normal py-2 px-3 rounded focus:outline-none focus:shadow-outline content-center mt-1"
                 >
                   Create
                 </Link>
@@ -44,7 +47,9 @@ const Project = () => {
               <div class="text-center">
               <Link
                   to="/search" // Specify the path to navigate to
-                  className="bg-[#1B1A55] hover:bg-[#39368b] text-white font-normal py-1 px-2 rounded focus:outline-none focus:shadow-outline content-center mt-1"
+
+                  className="bg-[#3d3d3d] hover:text-[#3d3d3d] hover:bg-[#b9b9b9] hover:font-bold text-white font-normal py-2 px-3 rounded focus:outline-none focus:shadow-outline content-center mt-1"
+
                 >
                   Search
                 </Link>
