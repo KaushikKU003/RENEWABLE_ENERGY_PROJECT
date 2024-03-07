@@ -1,10 +1,11 @@
 // import logo from './logo.svg';
-import {BrowserRouter,Routes,Route} from 'react-router-dom'
-import Login from './components/Login/login';
-import Layout from './components/Layout';
-import Dashboard from './components/home'
-import Project from './components/Project';
+import { BrowserRouter, Routes, Route } from "react-router-dom";
+import Login from "./components/Login/login";
+import Layout from "./components/Layout";
+import Dashboard from "./components/home";
+import Project from "./components/Project";
 // import ProjectsLayout from './components/Project/AllPages/ProjectLayout';
+
 import ProjectDetails from './components/Project/projectDetails';
 import FinanceDetails from './components/Project/financeDetails';
 import ProjectBenits from './components/Project/projectBenifits';
@@ -14,16 +15,18 @@ import ProjectOrganization from './components/Project/organisationDetails';
 import NotFound from './components/notfound';
 import ProjectSearch from './components/Project/projectSearch';
 import { Toaster } from 'react-hot-toast';
+import ProjectDisplay from "./components/Project/projectDisplay";
+import ProjectSearch from "./components/Project/projectSearch";
 
 // import LayoutApp from './components/Project/LayoutApp';
 function App() {
   return (
     <>
-    <BrowserRouter>
-      <Routes>
-          <Route path="/login" index element={<Login />} />
+      <BrowserRouter>
+        <Routes>
+          <Route path="/login" element={<Login />} />
           <Route path="/" element={<Layout />}>
-          <Route  element={<Dashboard />} />
+          <Route element={<Dashboard />} />
           <Route path="/project" element={<Project />} />
           <Route path="/*" element={<NotFound />} />
         </Route>
@@ -36,12 +39,15 @@ function App() {
           
           <Route path = '/dashboard' element={<Dashboard/>}/>
           <Route path = '/search' element={<ProjectSearch/>}/>
-         
+          <Route
+            path="/displayproject/:project_id"
+            element={<ProjectDisplay />}
+          />
       </Routes>
     </BrowserRouter>
     <Toaster/>
+
     </>
-   
   );
 }
 

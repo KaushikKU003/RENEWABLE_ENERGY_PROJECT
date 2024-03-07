@@ -1,4 +1,4 @@
-import React, { useEffect, useState, } from "react";
+import React, { useEffect, useState } from "react";
 import Chart from "chart.js/auto";
 import axios from "axios";
 
@@ -115,15 +115,15 @@ const ProjectPieChart = () => {
   };
 
   return (
-    <>
+    <div className="bg-black bg-opacity-95 text-white min-h-screen">
       <center>
-        <h1 className="mt-5 text-4xl">PROJECT SUMMARY</h1>
+        <h1 className=" text-4xl">PROJECT SUMMARY</h1>
       </center>
       <div className="flex h-1/3 w-1/3 mt-10 gap-72">
         <canvas id="projectChart"></canvas>
         <canvas id="projectBarChart" className="mt-20"></canvas>
       </div>
-    </>
+    </div>
   );
 };
 

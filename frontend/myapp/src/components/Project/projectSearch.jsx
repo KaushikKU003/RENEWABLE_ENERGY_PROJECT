@@ -3,11 +3,13 @@ import axios from "axios";
 import { useState, useEffect } from "react";
 import Select from "react-select";
 import { Toaster, toast } from "react-hot-toast";
+import { useNavigate } from "react-router-dom";
 
 function ProjectSearch() {
   const [searchTerm, setSearchTerm] = useState("");
   const [searchType, setSearchType] = useState(null);
   const [projects, setProjects] = useState([]);
+  const navigate = useNavigate();
 
   console.log(searchType);
   const facultyOptions = [
@@ -36,10 +38,15 @@ function ProjectSearch() {
     }
   };
 
+  const handleSubmit = (project_id) => {
+    navigate(`/displayproject/${project_id}`);
+  };
+
   return (
-    <div>
+    <div className="bg-black bg-opacity-95 min-h-screen">
       <center>
         <h2 className="text-5xl bg-[#303030] text-white font-monospace p-4 font-semibold">Search Projects</h2>
+
         <div className="md:flex justify-center mt-10 gap-4">
           <input
             type="text"
@@ -50,7 +57,8 @@ function ProjectSearch() {
           />
           <button
             type="submit"
-            className="bg-[#1B1A55] hover:bg-[#39368b] text-white font-normal py-1 px-2 rounded focus:outline-none focus:shadow-outline content-center mt-1"onClick={handleSearch}
+            className="bg-[#1B1A55] hover:bg-[#39368b] text-white font-normal py-1 px-2 rounded focus:outline-none focus:shadow-outline content-center mt-1"
+            onClick={handleSearch}
           >
             SEARCH
           </button>
@@ -72,7 +80,7 @@ function ProjectSearch() {
           projects.map((project) => (
             <div
               key={project.project_id}
-              className="mt-10 md:h-40 bg-slate-300 flex flex-col items-center rounded-3xl justify-around md:p-5 md:w-1/4 mx-auto h-1/2 w-1/2 p-5 shadow-black shadow-md"
+              className="mt-10 md:h-40 bg-black bg-opacity-95 flex flex-col items-center rounded-3xl justify-around md:p-5 md:w-1/4 mx-auto h-1/2 w-1/2 p-5 shadow-white shadow-md text-white"
             >
               <p className="font-bold">Project Name: {project.project_name}</p>
               <p className="font-bold">Type: {project.type}</p>
@@ -83,6 +91,7 @@ function ProjectSearch() {
               <button
                 type="submit"
                 className="bg-[#1B1A55] hover:bg-[#39368b] text-white font-normal py-1 px-2 rounded focus:outline-none focus:shadow-outline content-center mt-1"
+                onClick={() => handleSubmit(project.project_id)}
               >
                 VIEW
               </button>
