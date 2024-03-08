@@ -10,7 +10,7 @@ router.post("/finances/:projectId", (req, res) => {
       total_cost,
       funding_source,
       revenue_generation,
-      return_on_investment,
+      revenue_generated,
     } = req.body;
 
     console.log(req.body);
@@ -24,13 +24,13 @@ router.post("/finances/:projectId", (req, res) => {
     }
 
     db.query(
-      "INSERT INTO finance (project_id, total_cost, funding_source, revenue_generation,return_on_investment) VALUES (?, ?, ?, ?,?)",
+      "INSERT INTO finance (project_id, total_cost, funding_source, revenue_generation,revenue_generated) VALUES (?, ?, ?, ?,?)",
       [
         project_id,
         total_cost,
         funding_source,
         revenue_generation,
-        return_on_investment,
+        revenue_generated,
       ],
       (error, result) => {
         if (error) {
@@ -64,7 +64,7 @@ router.put("/finances/:id", (req, res) => {
       total_cost,
       funding_source,
       revenue_generation,
-      return_on_investment,
+      revenue_generated,
     } = req.body;
 
     console.log(req.body);
@@ -92,9 +92,9 @@ router.put("/finances/:id", (req, res) => {
       updateFields.push("revenue_generation = ?");
       updateValues.push(revenue_generation);
     }
-    if (return_on_investment) {
-      updateFields.push("return_on_investment = ?");
-      updateValues.push(return_on_investment);
+    if (revenue_generated) {
+      updateFields.push("revenue_generated = ?");
+      updateValues.push(revenue_generated);
     }
 
     updateValues.push(financeId);
