@@ -63,19 +63,19 @@ const storedMessage = message;
 
   return (
     <>
-      <body className="flex items-center justify-center h-screen bg-[#8c0c57]">
+      <body className="flex items-center justify-center h-screen bg-[#202020]">
         <div className="bg-white p-8 rounded-lg shadow-md w-full max-w-sm  hover:shadow-[2px_2px_40px_rgba(27,2,17,0.6)]">
           <h1 className="text-2xl font-semibold mb-6 text-center">Login</h1>
           <form id="loginForm" onSubmit={handleRegularLogin}>
             <div className="mb-4">
               <label htmlFor="username" className="block text-gray-700 text-sm font-bold mb-2">User name</label>
               <input type='text' id="email" name="email" required value={formData.email} onChange={handleInputChange}
-                className="shadow appearance-none border rounded w-full py-2 px-3 text-gray-700 leading-tight focus:outline-none focus:shadow-outline"/>
+                className="shadow appearance-none border rounded w-full py-2 px-3 text-gray-700 leading-tight focus:outline-none focus:shadow-outline border-black border-2"/>
             </div>
             <div className="mb-6">
               <label htmlFor="password" className="block text-gray-700 text-sm font-bold mb-2">Password</label>
               <input type="password" id="password" name="password" required value={formData.password} onChange={handleInputChange}
-                className="shadow appearance-none border rounded w-full py-2 px-3 text-gray-700 mb-3 leading-tight focus:outline-none focus:shadow-outline"/>
+                className="shadow appearance-none border rounded w-full py-2 px-3 text-gray-700 mb-3 leading-tight focus:outline-none focus:shadow-outline border-black border-2"/>
             </div>
             <div className="flex items-center justify-center">
               <button type="submit"

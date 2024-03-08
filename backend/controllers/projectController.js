@@ -212,7 +212,7 @@ router.get("/projects", (req, res) => {
     if (searchBy === "start_date") {
       params.push(searchTerm);
     } else {
-      params.push(`%${searchTerm}%`);
+      params.push(`${searchTerm}%`);
     }
 
     db.query(sql, params, (error, results) => {

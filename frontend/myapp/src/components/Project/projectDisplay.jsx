@@ -52,13 +52,13 @@ function ProjectDisplay() {
             <p className="font-bold">Country: {project.country}</p>
           </div>
 
-          <div className=" ml-10 p-3 rounded-lg bg-white relative bottom-1/3 left-80 mb-5">
+          <div className=" ml-10 p-3 rounded-lg bg-white relative bottom-2/3 left-1/3">
             <h2 className="text-2xl font-bold">BENEFIT DETAILS</h2>
             <p className="font-bold">CO2 Reduction: {project.co2_reduction}</p>
             <p className="font-bold">Other benfits: {project.other_benifits}</p>
-          </div>
+          </div>    
 
-          <div className=" ml-10 p-3 rounded-lg bg-white relative bottom-3/4 right-24">
+          <div className=" ml-10 p-3 rounded-lg bg-white relative bottom-1/4 right-24">
             <h2 className="text-2xl font-bold">FINANCE DETAILS</h2>
             <p className="font-bold">Total cost: {project.total_cost}</p>
             <p className="font-bold">
@@ -72,7 +72,7 @@ function ProjectDisplay() {
             </p>
           </div>
 
-          <div className="ml-10 p-3 rounded-lg bg-white relative bottom-3/4 right-6">
+          <div className="ml-10 p-3 rounded-lg bg-white relative bottom-1/4 right-6">
             <h2 className="text-2xl font-bold">RISK DETAILS</h2>
             <p className="font-bold">Impact: {project.impact}</p>
             <p className="font-bold">Likelihood: {project.Likelihood}</p>
