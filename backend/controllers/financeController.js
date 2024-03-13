@@ -127,46 +127,46 @@ router.put("/finances/:id", (req, res) => {
   }
 });
 
-
-router.get('/finances/all', (req, res) => {
+router.get("/finances/all", (req, res) => {
   try {
-    db.query("SELECT p.project_name, f.total_cost, f.revenue_generated FROM finance f JOIN project p ON f.project_id = p.project_id", (error, results) => {
-      if (error) {
-        return res.status(500).json({
-          success: false,
-          message: "Database error: " + error
+    db.query(
+      "SELECT p.project_name, f.total_cost, f.revenue_generated FROM finance f JOIN project p ON f.project_id = p.project_id LIMIT 10",
+      (error, results) => {
+        if (error) {
+          return res.status(500).json({
+            success: false,
+            message: "Database error: " + error,
+          });
+        }
+
+        if (results.length === 0) {
+          return res.status(404).json({
+            success: false,
+            message: "No finance data found",
+          });
+        }
+
+        const projectsROI = results.map((project) => {
+          const total_cost = project.total_cost;
+          const revenue_generated = project.revenue_generated;
+          const roi = ((revenue_generated - total_cost) / total_cost) * 100;
+
+          return {
+            project_name: project.project_name,
+            roi: roi,
+          };
+        });
+
+        return res.status(200).json({
+          success: true,
+          projectsROI: projectsROI,
         });
       }
-
-      if (results.length === 0) {
-        return res.status(404).json({
-          success: false,
-          message: "No finance data found"
-        });
-      }
-
-      const projectsROI = results.map(project => {
-        const total_cost = project.total_cost;
-        const revenue_generated = project.revenue_generated;
-        const roi = ((revenue_generated - total_cost) / total_cost) * 100;
-        
-        return {
-          project_name: project.project_name,
-          roi: roi
-        };
-      });
-
-      return res.status(200).json({
-        success: true,
-        projectsROI: projectsROI
-      });
-
-    });
-
+    );
   } catch (error) {
     return res.status(500).json({
       success: false,
-      message: "Internal server error: " + error
+      message: "Internal server error: " + error,
     });
   }
 });
@@ -205,11 +205,33 @@ router.get("/finances/:id", (req, res) => {
         const revenue_generated = result[0].revenue_generated;
         const roi = ((revenue_generated - total_cost) / total_cost) * 100;
 
-        // Return response with ROI
-        return res.status(200).json({
-          success: true,
-          roi: roi,
-        });
+        // Nested query to fetch project name
+        db.query(
+          "SELECT project_name FROM project WHERE project_id = ?",
+          [project_id],
+          (error, results) => {
+            if (error) {
+              return res.status(500).json({
+                success: false,
+                message: "Database error: " + error,
+              });
+            }
+
+            if (results.length === 0) {
+              return res.status(404).json({
+                success: false,
+                message: "No project found for the provided project_id",
+              });
+            }
+
+            // Return response with ROI and project name
+            return res.status(200).json({
+              success: true,
+              roi: roi,
+              projectName: results[0].project_name,
+            });
+          }
+        );
       }
     );
   } catch (error) {
@@ -219,10 +241,5 @@ router.get("/finances/:id", (req, res) => {
     });
   }
 });
-
-
-
-
-
 
 module.exports = router;
