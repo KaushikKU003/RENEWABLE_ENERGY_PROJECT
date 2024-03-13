@@ -115,7 +115,7 @@ const ProjectPieChart = () => {
   };
 
   return (
-    <div className="bg-black bg-opacity-95 text-white min-h-screen">
+    <div className="bg-[#f8e7e7] bg-opacity-95 text-black min-h-screen font-monospace font-bold">
       <center>
         <h1 className=" text-4xl">PROJECT SUMMARY</h1>
       </center>

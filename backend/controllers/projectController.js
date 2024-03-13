@@ -212,7 +212,7 @@ router.get("/projects", (req, res) => {
     if (searchBy === "start_date") {
       params.push(searchTerm);
     } else {
-      params.push(`%${searchTerm}%`);
+      params.push(`${searchTerm}%`);
     }
 
     db.query(sql, params, (error, results) => {
@@ -253,7 +253,7 @@ router.get("/projects/:id", (req, res) => {
     }
 
     const sql = `
-      SELECT project_name, type, start_date, status, capacity, location_name, country,organization_name,organization_type,contact_info, total_cost,funding_source, revenue_generation, return_on_investment,co2_reduction,other_benifits,impact,Likelihood,risk_description
+      SELECT project_name, type, start_date, status, capacity, location_name, country,organization_name,organization_type,contact_info, total_cost,funding_source, revenue_generation, revenue_generated,co2_reduction,other_benifits,impact,Likelihood,risk_description
       FROM project p
       JOIN location l ON p.project_id = l.project_id
       JOIN organization o ON p.project_id  = o.project_id

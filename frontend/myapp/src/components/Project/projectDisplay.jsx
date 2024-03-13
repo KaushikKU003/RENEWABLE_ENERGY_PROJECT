@@ -52,33 +52,34 @@ function ProjectDisplay() {
             <p className="font-bold">Country: {project.country}</p>
           </div>
 
-          <div className=" ml-10 p-3 rounded-lg bg-white relative bottom-1/3 left-80 mb-5">
+          <div className=" ml-10 p-3 rounded-lg bg-white relative bottom-2/3 left-1/3">
             <h2 className="text-2xl font-bold">BENEFIT DETAILS</h2>
             <p className="font-bold">CO2 Reduction: {project.co2_reduction}</p>
             <p className="font-bold">Other benfits: {project.other_benifits}</p>
           </div>
 
-          <div className=" ml-10 p-3 rounded-lg bg-white relative bottom-3/4 right-24">
+          <div className=" ml-10 p-3 rounded-lg bg-white relative bottom-1/4 right-24">
             <h2 className="text-2xl font-bold">FINANCE DETAILS</h2>
             <p className="font-bold">Total cost: {project.total_cost}</p>
             <p className="font-bold">
               Funding Source: {project.funding_source}
             </p>
+
             <p className="font-bold">
               Revenue generation: {project.revenue_generation}
             </p>
+
             <p className="font-bold">
-              Return on investment: {project.return_on_investment}
+              Revenue generated: {project.revenue_generated}
             </p>
+
           </div>
 
-          <div className="ml-10 p-3 rounded-lg bg-white relative bottom-3/4 right-6">
+          <div className="ml-10 p-3 rounded-lg bg-white relative bottom-1/4 right-6">
             <h2 className="text-2xl font-bold">RISK DETAILS</h2>
             <p className="font-bold">Impact: {project.impact}</p>
             <p className="font-bold">Likelihood: {project.Likelihood}</p>
-            <p className="font-bold">
-              Revenue generation: {project.revenue_generation}
-            </p>
+
             <p className="font-bold">Description: {project.risk_description}</p>
           </div>
           <div className="mb-96 ml-10 p-3 rounded-lg relative bottom-full right-10 mt-20">
@@ -87,7 +88,18 @@ function ProjectDisplay() {
                 to="/search"
                 className="bg-[#1B1A55] hover:bg-[#39368b] text-white font-normal py-3 px-2 rounded focus:outline-none focus:shadow-outline content-center"
               >
-               View on Maps
+                View on Maps
+              </Link>
+            </div>
+          </div>
+
+          <div className="mb-96 ml-10 p-3 rounded-lg relative bottom-full right-56 mt-40">
+            <div class="text-center">
+              <Link
+                to={`/finance/${project_id}`}
+                className="bg-[#1B1A55] hover:bg-[#39368b] text-white font-normal py-3 px-2 rounded focus:outline-none focus:shadow-outline content-center"
+              >
+                Check ROI
               </Link>
             </div>
           </div>

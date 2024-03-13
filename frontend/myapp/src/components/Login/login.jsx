@@ -65,7 +65,7 @@ const storedMessage = message;
 
   return (
     <>
-      <body className="flex items-center justify-center h-screen bg-[#8c0c57]">
+      <body className="flex items-center justify-center h-screen bg-[#202020]">
         <div className="bg-white p-8 rounded-lg shadow-md w-full max-w-sm  hover:shadow-[2px_2px_40px_rgba(27,2,17,0.6)]">
           <h1 className="text-2xl font-semibold mb-6 text-center">Login</h1>
           <form id="loginForm" onSubmit={handleRegularLogin}>
