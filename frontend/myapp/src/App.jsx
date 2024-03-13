@@ -16,7 +16,8 @@ import NotFound from './components/notfound';
 import ProjectSearch from './components/Project/projectSearch';
 import { Toaster } from 'react-hot-toast';
 import ProjectDisplay from "./components/Project/projectDisplay";
-import ProjectSearch from "./components/Project/projectSearch";
+import LocationMapPage from "./components/Location/LocationMapPage";
+// import ProjectSearch from "./components/Project/projectSearch";
 
 // import LayoutApp from './components/Project/LayoutApp';
 function App() {
@@ -39,6 +40,7 @@ function App() {
           
           <Route path = '/dashboard' element={<Dashboard/>}/>
           <Route path = '/search' element={<ProjectSearch/>}/>
+          <Route path = '/location' element={<LocationMapPage/>}/>
           <Route
             path="/displayproject/:project_id"
             element={<ProjectDisplay />}
