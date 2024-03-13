@@ -1,9 +1,16 @@
 import React, { useEffect, useState } from "react";
 import { Line } from "react-chartjs-2";
 import axios from "axios";
+import { useParams } from "react-router-dom";
 
 function Financemetric() {
   const [LinechartData, setLineChartData] = useState(null);
+  const [roi,setroi] = useState("")
+  const [name,setName] = useState("")
+  const { project_id } = useParams();
+  console.log(project_id)
+
+  console.log(roi)
 
   useEffect(() => {
     fetchData();
@@ -22,6 +29,16 @@ function Financemetric() {
       const counts = data.projectsROI.map((item) => item.roi);
 
       setLineChartData({ labels, counts });
+
+
+      const response1 = await axios.get(
+        `http://localhost:4000/app/finance/finances/${project_id}`
+      );
+
+      const data1 = response1.data
+      setroi(data1.roi)
+      setName(data1.projectName)
+
     } catch (error) {
       console.error("Error fetching data: ", error);
     }
@@ -88,7 +105,7 @@ function Financemetric() {
         )}
       </div>
       <div className="bg-black" style={{ padding: "20px", textAlign: "center" }}>
-        <h1 className="text-white">Hello</h1>
+        <h1 className="text-white mt-5 text-3xl">THE ROI OF PROJECT {name.toLocaleUpperCase()} is {roi} %</h1>
       </div>
     </div>
   );

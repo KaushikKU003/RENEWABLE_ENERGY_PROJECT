@@ -19,6 +19,7 @@ import ProjectDisplay from "./components/Project/projectDisplay";
 // import ProjectSearch from "./components/Project/projectSearch";
 
 import Financemetric from "./components/finance/financemetric";
+import Benefits from "./components/benefit/benefits";
 
 // import LayoutApp from './components/Project/LayoutApp';
 function App() {
@@ -38,7 +39,8 @@ function App() {
           <Route path='/riskdetails/:projectId' element={<ProjectRisks/>}/>
           <Route path='/locationdetails/:projectId' element={<ProjectLocation/>}/>
           <Route path='/orgdetails/:projectId' element={<ProjectOrganization/>}/>
-          <Route path = '/finance' element = {<Financemetric/>}/>
+          <Route path = '/finance/:project_id' element = {<Financemetric/>}/>
+          <Route path = '/benefit' element={<Benefits/>}/>
           
           <Route path = '/dashboard' element={<Dashboard/>}/>
           <Route path = '/search' element={<ProjectSearch/>}/>
