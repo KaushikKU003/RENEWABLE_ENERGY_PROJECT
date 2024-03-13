@@ -43,11 +43,11 @@ function ProjectSearch() {
   };
 
   return (
-    <div className="bg-black bg-opacity-95 min-h-screen">
+    <div className="bg-[#303030] bg-opacity-95 min-h-screen">
       <center>
         <h2 className="text-5xl bg-[#303030] text-white font-monospace p-4 font-semibold">Search Projects</h2>
 
-        <div className="md:flex justify-center mt-10 gap-4">
+        <div className="md:flex justify-center mt-10 gap-4 font-bold">
           <input
             type="text"
             placeholder="Search..."
@@ -57,7 +57,7 @@ function ProjectSearch() {
           />
           <button
             type="submit"
-            className="bg-[#1B1A55] hover:bg-[#39368b] text-white font-normal py-1 px-2 rounded focus:outline-none focus:shadow-outline content-center mt-1"
+            className="bg-[#90fbff] hover:bg-[#55f4ff] text-[#303030] font-normal py-1 px-2 rounded focus:outline-none focus:shadow-outline content-center mt-1 "
             onClick={handleSearch}
           >
             SEARCH

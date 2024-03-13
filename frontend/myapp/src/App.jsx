@@ -16,6 +16,8 @@ import NotFound from './components/notfound';
 import ProjectSearch from './components/Project/projectSearch';
 import { Toaster } from 'react-hot-toast';
 import ProjectDisplay from "./components/Project/projectDisplay";
+import LocationMapPage from "./components/Location/LocationMapPage";
+// import ProjectSearch from "./components/Project/projectSearch";
 // import ProjectSearch from "./components/Project/projectSearch";
 
 import Financemetric from "./components/finance/financemetric";
@@ -44,6 +46,7 @@ function App() {
           
           <Route path = '/dashboard' element={<Dashboard/>}/>
           <Route path = '/search' element={<ProjectSearch/>}/>
+          <Route path = '/location' element={<LocationMapPage/>}/>
           <Route
             path="/displayproject/:project_id"
             element={<ProjectDisplay />}

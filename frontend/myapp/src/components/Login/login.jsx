@@ -6,8 +6,8 @@ import "react-toastify/dist/ReactToastify.css";
 const Login = () => {
   const navigate = useNavigate();
   const [formData, setFormData] = useState({
-    email: '',
-    password: ''
+    admin_name: '',
+    admin_password: ''
   });
 
   const handleError = (err) =>
@@ -18,14 +18,15 @@ const handleSuccess = (msg) =>
     toast.success(msg, {
       position: "top-right",
     });
-const handleRegularLogin = async () => {
+const handleRegularLogin = async (event) => {
+  event.preventDefault();
   try {
-    const response = await axios.post('http://localhost:4000/app/admin/admins/login', formData);
-    console.log(response.data); // Log the response data
-    
+    const response = await axios.post('http://localhost:4000/app/admin/login', formData);
+    console.log("Response.data:",response.data); // Log the response data
     if (response.data.success) {
       // Redirect to dashboard on successful login
       handleSuccess("Login successful!")
+      localStorage.setItem("role","admin")
       setTimeout(() => {
         navigate("/");
       }, 1500)
@@ -47,6 +48,7 @@ const storedMessage = message;
 // console.log("Stored message is:",storedMessage);
   // Handle guest login action here (if needed)
   handleSuccess(storedMessage);
+  localStorage.setItem("role","guest")
   console.log('Guest login action'); 
   setTimeout(() => {
     navigate("/");
@@ -69,13 +71,13 @@ const storedMessage = message;
           <form id="loginForm" onSubmit={handleRegularLogin}>
             <div className="mb-4">
               <label htmlFor="username" className="block text-gray-700 text-sm font-bold mb-2">User name</label>
-              <input type='text' id="email" name="email" required value={formData.email} onChange={handleInputChange}
-                className="shadow appearance-none border rounded w-full py-2 px-3 text-gray-700 leading-tight focus:outline-none focus:shadow-outline border-black border-2"/>
+              <input type='text' id="admin_name" name="admin_name" required value={formData.admin_name} onChange={handleInputChange}
+                className="shadow appearance-none border rounded w-full py-2 px-3 text-gray-700 leading-tight focus:outline-none focus:shadow-outline"/>
             </div>
             <div className="mb-6">
-              <label htmlFor="password" className="block text-gray-700 text-sm font-bold mb-2">Password</label>
-              <input type="password" id="password" name="password" required value={formData.password} onChange={handleInputChange}
-                className="shadow appearance-none border rounded w-full py-2 px-3 text-gray-700 mb-3 leading-tight focus:outline-none focus:shadow-outline border-black border-2"/>
+              <label htmlFor="admin_password" className="block text-gray-700 text-sm font-bold mb-2">Password</label>
+              <input type="password" id="admin_password" name="admin_password" required value={formData.admin_password} onChange={handleInputChange}
+                className="shadow appearance-none border rounded w-full py-2 px-3 text-gray-700 mb-3 leading-tight focus:outline-none focus:shadow-outline"/>
             </div>
             <div className="flex items-center justify-center">
               <button type="submit"
