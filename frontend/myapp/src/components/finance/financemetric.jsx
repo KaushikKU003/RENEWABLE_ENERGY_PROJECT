@@ -105,7 +105,7 @@ function Financemetric() {
         )}
       </div>
       <div className="bg-black" style={{ padding: "20px", textAlign: "center" }}>
-        <h1 className="text-white mt-5 text-3xl">THE ROI OF PROJECT {name.toLocaleUpperCase()} is {roi} %</h1>
+        <h1 className="text-white mt-5 text-3xl">THE ROI OF PROJECT {name.toLocaleUpperCase()} is<span className="text-[#90fbff]"> {roi} %</span></h1>
       </div>
     </div>
   );

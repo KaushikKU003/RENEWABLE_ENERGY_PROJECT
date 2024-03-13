@@ -42,7 +42,7 @@ function App() {
           <Route path='/locationdetails/:projectId' element={<ProjectLocation/>}/>
           <Route path='/orgdetails/:projectId' element={<ProjectOrganization/>}/>
           <Route path = '/finance/:project_id' element = {<Financemetric/>}/>
-          <Route path = '/benefit' element={<Benefits/>}/>
+          <Route path = '/benefit/:project_id' element={<Benefits/>}/>
           
           <Route path = '/dashboard' element={<Dashboard/>}/>
           <Route path = '/search' element={<ProjectSearch/>}/>

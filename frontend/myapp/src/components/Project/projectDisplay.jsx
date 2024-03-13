@@ -85,7 +85,7 @@ function ProjectDisplay() {
           <div className="mb-96 ml-10 p-3 rounded-lg relative bottom-full right-10 mt-20">
             <div class="text-center">
               <Link
-                to="/search"
+                to="/location"
                 className="bg-[#1B1A55] hover:bg-[#39368b] text-white font-normal py-3 px-2 rounded focus:outline-none focus:shadow-outline content-center"
               >
                 View on Maps
@@ -100,6 +100,17 @@ function ProjectDisplay() {
                 className="bg-[#1B1A55] hover:bg-[#39368b] text-white font-normal py-3 px-2 rounded focus:outline-none focus:shadow-outline content-center"
               >
                 Check ROI
+              </Link>
+            </div>
+          </div>
+
+          <div className="mb-96 ml-10 p-3 rounded-lg relative bottom-full right-56 mt-40">
+            <div class="text-center">
+              <Link
+                to={`/benefit/${project_id}`}
+                className="bg-[#1B1A55] hover:bg-[#39368b] text-white font-normal py-3 px-2 rounded focus:outline-none focus:shadow-outline content-center"
+              >
+                Check co2 Reduction
               </Link>
             </div>
           </div>
