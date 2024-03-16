@@ -1,10 +1,15 @@
 import React from 'react';
 import LocationMap from './LocationMap';
+import { useParams } from 'react-router-dom';
 
 const LocationMapPage = () => {
   // Example latitude and longitude
-  const latitude = 12.87311491009048;
-  const longitude = 74.9196933021752;
+  // const latitude = 12.87311491009048;
+  // const longitude = 74.9196933021752;
+
+  const { longitude, latitude } = useParams();
+  console.log(longitude)
+  console.log(latitude)
 
   return (
     <div className='bg-[#303030] min-h-screen '>

@@ -79,13 +79,12 @@ function ProjectDisplay() {
             <h2 className="text-2xl font-bold">RISK DETAILS</h2>
             <p className="font-bold">Impact: {project.impact}</p>
             <p className="font-bold">Likelihood: {project.Likelihood}</p>
-
             <p className="font-bold">Description: {project.risk_description}</p>
           </div>
           <div className="mb-96 ml-10 p-3 rounded-lg relative bottom-full right-10 mt-20">
             <div class="text-center">
               <Link
-                to="/location"
+                to={`/location/${project.longitude}/${project.latitude}`}
                 className="bg-[#1B1A55] hover:bg-[#39368b] text-white font-normal py-3 px-2 rounded focus:outline-none focus:shadow-outline content-center"
               >
                 View on Maps
@@ -104,7 +103,7 @@ function ProjectDisplay() {
             </div>
           </div>
 
-          <div className="mb-96 ml-10 p-3 rounded-lg relative bottom-full right-56 mt-40">
+          <div className="mb-96 ml-1 p-3 rounded-lg relative bottom-full right-56 mt-40">
             <div class="text-center">
               <Link
                 to={`/benefit/${project_id}`}
