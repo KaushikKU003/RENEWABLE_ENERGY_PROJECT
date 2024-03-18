@@ -10,10 +10,10 @@ const LocationMapPage = () => {
   const { longitude, latitude } = useParams();
   console.log(longitude)
   console.log(latitude)
-
+ const project_name=localStorage.getItem("pname");
   return (
     <div className='bg-[#303030] min-h-screen '>
-      <h1 className='text-white font-monospace text-3xl font-bold mb-4'>Location Map Page</h1>
+      <h1 className='text-white font-monospace text-3xl font-bold mb-4'>Map View of Project {project_name}</h1>
       <LocationMap latitude={latitude} longitude={longitude} className="" />
     </div>
   );

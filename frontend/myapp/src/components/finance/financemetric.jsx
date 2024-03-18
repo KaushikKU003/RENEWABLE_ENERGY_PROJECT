@@ -25,8 +25,8 @@ function Financemetric() {
       );
 
       const data = response.data;
-      const labels = data.projectsROI.map((item) => item.project_name);
-      const counts = data.projectsROI.map((item) => item.roi);
+      const labels = data.projectsWithROI.map((item) => item.project_name);
+      const counts = data.projectsWithROI.map((item) => item.roi);
 
       setLineChartData({ labels, counts });
 

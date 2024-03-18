@@ -26,7 +26,9 @@ function Benefits() {
   };
 
   return (
-    <div className="flex justify-center items-center min-h-screen bg-black">
+    <>
+    <h1 className="bg-[#303030] text-white font-monospace text-3xl font-bold text-center">Co2 reduction details</h1>
+    <div className="flex justify-center items-center min-h-[95vh] bg-[#303030]">
       <div className="overflow-x-auto">
         <table className="table-auto min-w-full border-collapse border border-[#90fbff] border-4 ">
           <thead>
@@ -57,6 +59,7 @@ function Benefits() {
         </center>
       </div>
     </div>
+    </>
   );
 }
 
