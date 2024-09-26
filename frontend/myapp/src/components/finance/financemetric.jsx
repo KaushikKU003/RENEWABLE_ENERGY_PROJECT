@@ -25,8 +25,8 @@ function Financemetric() {
       );
 
       const data = response.data;
-      const labels = data.projectsWithROI.map((item) => item.project_name);
-      const counts = data.projectsWithROI.map((item) => item.roi);
+      const labels = data.projectsROI.map((item) => item.project_name);
+      const counts = data.projectsROI.map((item) => item.roi);
 
       setLineChartData({ labels, counts });
 
@@ -105,7 +105,7 @@ function Financemetric() {
         )}
       </div>
       <div className="bg-black" style={{ padding: "20px", textAlign: "center" }}>
-        <h1 className="text-white mt-5 text-3xl">THE ROI OF PROJECT {name.toLocaleUpperCase()} is<span className="text-[#90fbff]"> {roi} %</span></h1>
+        <h1 className="text-white mt-5 text-3xl">THE ROI OF PROJECT {name.toLocaleUpperCase()} is {roi} %</h1>
       </div>
     </div>
   );

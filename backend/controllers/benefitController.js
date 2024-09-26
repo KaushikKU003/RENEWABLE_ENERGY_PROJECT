@@ -103,9 +103,9 @@ router.put("/benefits/:id", (req, res) => {
   }
 });
 
-router.get("/benefits/:project_id", (req, res) => {
+router.get("/benefits/:id", (req, res) => {
   try {
-    const { project_id } = req.params
+    const { project_id } = req.body;
 
     if (!project_id) {
       return res.status(401).json({
@@ -115,34 +115,8 @@ router.get("/benefits/:project_id", (req, res) => {
     }
 
     db.query(
-      "SELECT project_name, co2_reduction, YEAR(start_date) AS YEAR FROM project p JOIN benefit b ON p.project_id = b.project_id ORDER BY co2_reduction DESC LIMIT 10",
-      (error, result) => {
-        if (error) {
-          return res.json({
-            status: 401,
-            success: false,
-            message: error,
-          });
-        }
-
-        db.query("SELECT b.co2_reduction, p.project_name from benefit b JOIN project p ON  p.project_id = b.project_id AND p.project_id=?",[project_id],(error,results)=>{
-          if (error) {
-            return res.json({
-              status: 401,
-              success: false,
-              message: error,
-            });
-          }
-
-          return res.status(201).json({
-            success:true,
-            message:"Data retrieved successfully",
-            values:result,
-            value:results[0]
-          })
-        })
-
-      }
+      "SELECT project_name, co2_reduction, start_date FROM project p JOIN benefit b ON p.project_id = b.project_id ORDER BY co2_reduction DESC LIMIT 10",
+      (error, result) => {}
     );
   } catch (error) {
     return res.status(500).json({
