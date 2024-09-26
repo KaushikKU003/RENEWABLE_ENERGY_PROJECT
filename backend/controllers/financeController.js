@@ -9,7 +9,7 @@ router.post("/finances/:projectId", (req, res) => {
     const {
       total_cost,
       funding_source,
-    
+      revenue_generation,
       revenue_generated,
     } = req.body;
 
@@ -24,12 +24,12 @@ router.post("/finances/:projectId", (req, res) => {
     }
 
     db.query(
-      "INSERT INTO finance (project_id, total_cost, funding_source,revenue_generated) VALUES (?, ?, ?, ?,?)",
+      "INSERT INTO finance (project_id, total_cost, funding_source, revenue_generation,revenue_generated) VALUES (?, ?, ?, ?,?)",
       [
         project_id,
         total_cost,
         funding_source,
-        
+        revenue_generation,
         revenue_generated,
       ],
       (error, result) => {
@@ -63,7 +63,7 @@ router.put("/finances/:id", (req, res) => {
     const {
       total_cost,
       funding_source,
-     
+      revenue_generation,
       revenue_generated,
     } = req.body;
 
@@ -88,7 +88,10 @@ router.put("/finances/:id", (req, res) => {
       updateFields.push("funding_source = ?");
       updateValues.push(funding_source);
     }
-   
+    if (revenue_generation) {
+      updateFields.push("revenue_generation = ?");
+      updateValues.push(revenue_generation);
+    }
     if (revenue_generated) {
       updateFields.push("revenue_generated = ?");
       updateValues.push(revenue_generated);
@@ -127,7 +130,7 @@ router.put("/finances/:id", (req, res) => {
 router.get("/finances/all", (req, res) => {
   try {
     db.query(
-      "SELECT p.project_name, f.total_cost, f.revenue_generated, p.project_id FROM finance f JOIN project p ON f.project_id = p.project_id LIMIT 10",
+      "SELECT p.project_name, f.total_cost, f.revenue_generated FROM finance f JOIN project p ON f.project_id = p.project_id LIMIT 10",
       (error, results) => {
         if (error) {
           return res.status(500).json({
@@ -143,22 +146,10 @@ router.get("/finances/all", (req, res) => {
           });
         }
 
-        console.log(results)
-        const projectsWithROI = results.map((project) => {
+        const projectsROI = results.map((project) => {
           const total_cost = project.total_cost;
           const revenue_generated = project.revenue_generated;
           const roi = ((revenue_generated - total_cost) / total_cost) * 100;
-
-          // Update ROI in the database
-          db.query(
-            "UPDATE finance SET roi = ? where project_id=?",
-            [roi,project.project_id],
-            (updateError, updateResults) => {
-              if (updateError) {
-                console.error("Failed to update ROI:", updateError);
-              }
-            }
-          );
 
           return {
             project_name: project.project_name,
@@ -168,7 +159,7 @@ router.get("/finances/all", (req, res) => {
 
         return res.status(200).json({
           success: true,
-          projectsWithROI: projectsWithROI,
+          projectsROI: projectsROI,
         });
       }
     );
